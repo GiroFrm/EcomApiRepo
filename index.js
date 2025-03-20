@@ -10,13 +10,17 @@ import handleImage from './controllers/image.js';
 
 const db = knex({
    client: 'pg',
-   connection: {
-     host: '127.0.0.1',
-     port: 5432,
-     user: 'postgres',
-     password: 'test',
-     database: 'ecom',
-   },
+  //  connection: {
+  //    host: '127.0.0.1',
+  //    port: 5432,
+  //    user: 'postgres',
+  //    password: 'test',
+  //    database: 'ecom',
+  //  },
+  connection: {
+    connectionString: process.env.DATABASE_URL, // Use Render's connection string
+    ssl: { rejectUnauthorized: false }, // Required for connecting to Render's PostgreSQL
+  },
  });
  
    const app = express();
